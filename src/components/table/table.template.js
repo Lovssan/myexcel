@@ -2,14 +2,14 @@ const CODES = {
   A: 65,
   Z: 90
 }
-function createCell(index) {
+function createCell(_, index) {
   return `
     <div class="cell" contenteditable data-id=${index}></div>
   `
 }
-function createCol(content, id) {
+function createCol(content, index) {
   return `
-    <div class="column" data-resized="resized" data-id="${id}">
+    <div class="column" data-resized="resized" data-id="${index}">
       ${content}
       <div class="col-resize" data-resize="col"></div>
     </div>
@@ -32,22 +32,20 @@ function toChar(_, index) {
 }
 
 export function createTable(rowsCount = 30) {
-  let num = 1
   const colsCount = CODES.Z-CODES.A + 1
   const rows = []
   const cols = new Array(colsCount)
       .fill('')
       .map(toChar)
-      .map((el)=> createCol(el, num++ ))
+      .map(createCol)
       .join('')
 
   rows.push(createRow(cols))
 
   for (let i = 0; i < rowsCount; i++) {
-    num = 1
     const cells = new Array(colsCount)
         .fill('')
-        .map((el)=> createCell(num++))
+        .map(createCell)
         .join('')
     rows.push(createRow(cells, i+1))
   }
