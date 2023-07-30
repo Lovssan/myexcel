@@ -49,7 +49,7 @@ export function toResize(event, $root) {
   }
   const mouseUp = ()=> {
     if (type === 'col') {
-      const elems = $root.findAll(`[data-id="${$parent.data.id}"]`)
+      const elems = $root.findAll(`[data-col="${$parent.data.col}"]`)
       elems.forEach((el) => {
         el.style.width = coords.width + 'px'
       })

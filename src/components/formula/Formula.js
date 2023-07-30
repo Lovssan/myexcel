@@ -3,10 +3,11 @@ import {ExcelComponent} from '../../core/ExcelComponent';
 export class Formula extends ExcelComponent {
   static className = 'excel__formula'
 
-  constructor($root) {
+  constructor($root, options) {
     super($root, {
       name: 'Formula',
-      listeners: ['input', 'click']
+      listeners: ['input', 'keydown'],
+      ...options
     })
   }
 
@@ -16,12 +17,22 @@ export class Formula extends ExcelComponent {
     <div class="input" contenteditable spellcheck="false"></div>
     `
   }
+  init() {
+    super.init()
+    this.$formula = this.$root.find('.input')
+    this.$on('table:select', (data) => this.$formula.text = data)
+    this.$on('table:input', (data) => this.$formula.text = data)
+  }
 
   onInput(event) {
-    console.log(event.target.textContent.trim())
+    const text = event.target.textContent.trim()
+    this.$dispatch('formula:input', text)
   }
-  onClick(event) {
-    console.log(event.target.textContent.trim())
+  onKeydown(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault()
+      this.$dispatch('formula:focus')
+    }
   }
 }
 
