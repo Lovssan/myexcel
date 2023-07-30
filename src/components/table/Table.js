@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import {ExcelComponent} from '../../core/ExcelComponent'
 import {$} from '../../core/dom'
 import {matrix, nextSelector} from '../../core/utils'

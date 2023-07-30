@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 export class TableSelection {
   static className = 'selected'
   constructor() {

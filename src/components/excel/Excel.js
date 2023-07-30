@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import {Observer} from '../../core/Observer'
 import {$} from '../../core/dom'
 

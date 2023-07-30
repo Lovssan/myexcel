@@ -1,4 +1,5 @@
-import {ExcelComponent} from '../../core/ExcelComponent';
+/* eslint-disable linebreak-style */
+import {ExcelComponent} from '../../core/ExcelComponent'
 
 export class Header extends ExcelComponent {
   static className = 'excel__header'

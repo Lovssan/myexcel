@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 export function capitalize(string) {
   if (typeof string!=='string') {
     return ''

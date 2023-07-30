@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import {DomListener} from '@core/DOMListener'
 
 export class ExcelComponent extends DomListener {

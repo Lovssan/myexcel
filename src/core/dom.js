@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 export class Dom {
   constructor(selector) {
     this.$el = typeof selector==='string'
