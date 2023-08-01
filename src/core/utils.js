@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+
 export function capitalize(string) {
   if (typeof string!=='string') {
     return ''
@@ -47,4 +48,43 @@ export function nextSelector(key, {col, row}) {
       break
   }
   return `[data-id="${row}:${col}"]`
+}
+
+export function storage(key, data=null) {
+  if (!data) {
+    return JSON.parse(localStorage.getItem(key))
+  } else {
+    localStorage.setItem(key, JSON.stringify(data))
+  }
+}
+
+export function isEqual(prevState, nextState) {
+  if (typeof prevState === 'object' && nextState === 'object') {
+    return JSON.stringify(prevState) === JSON.stringify(nextState)
+  }
+  return prevState === nextState
+}
+
+
+export function camelToDashCase(str) {
+  return str.replace(/([A-Z])/g, (g) => `-${g[0].toLowerCase()}`)
+}
+
+
+export function toInlineStyles(styles ={}) {
+  return Object.keys(styles)
+      .map((key) => `${camelToDashCase(key)}:${styles[key]}`)
+      .join('; ')
+}
+
+export function debounce(fn, wait) {
+  let timeout
+  return function(...args) {
+    const later = () => {
+      clearInterval(timeout)
+      fn(...args)
+    }
+    clearInterval(timeout)
+    timeout = setTimeout(later, wait)
+  }
 }

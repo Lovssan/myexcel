@@ -6,11 +6,23 @@ export class ExcelComponent extends DomListener {
     super($root, options.listeners)
     this.name = options.name || ''
     this.observer = options.observer
-    this.unsubscribes = []
+    this.subscribe = options.subscribe || []
+    this.store = options.store
     this.prepare()
+    this.storeSub = null
   }
   prepare() {
+  }
 
+  storeChanged() {
+  }
+
+  isWatching(key) {
+    return this.subscribe.includes(key)
+  }
+
+  $dispatchStore(action) {
+    this.store.dispatch(action)
   }
 
   $dispatch(event, ...args) {
@@ -18,8 +30,7 @@ export class ExcelComponent extends DomListener {
   }
 
   $on(event, fn) {
-    const unsub = this.observer.subscribe(event, fn)
-    this.unsubscribes.push(unsub)
+    this.observer.subscribe(event, fn)
   }
   // Возвращает шаблон компонента
   toHTML() {
