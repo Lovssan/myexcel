@@ -46,6 +46,13 @@ export function createToolbar(state) {
       icon: ' format_italic',
       active: state['fontStyle'] === 'italic',
       value: {fontStyle: state['fontStyle'] === 'italic'? 'normal': 'italic'}
+    },
+    {
+      icon: ' format_strikethrough',
+      active: state['textDecoration'] === 'line-through',
+      value: {textDecoration: state['textDecoration'] === 'line-through'
+                                ? 'normal'
+                                : 'line-through'}
     }
   ]
   return buttons.map(toButton).join('')
