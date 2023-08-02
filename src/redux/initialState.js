@@ -1,6 +1,5 @@
 /* eslint-disable linebreak-style */
 import {defaultStyles} from '../constants'
-import {storage} from '../core/utils'
 
 const defaultState = {
   rowState: {},
@@ -9,7 +8,8 @@ const defaultState = {
   stylesState: {},
   currentStyles: defaultStyles,
   currentText: '',
-  tableName: 'Новая таблица',
+  tableName: 'Новая таблицa',
+  date: date()
 }
 
 const normilized = (state) => {
@@ -20,8 +20,11 @@ const normilized = (state) => {
   }
 }
 
-export const initialState = storage('excel-state')
-    ? normilized(storage('excel-state'))
-    :defaultState
+export const normilizedInitialState = (state) => {
+  return state ?normilized(state) :defaultState
+}
 
-
+function date() {
+  const date = new Date
+  return date.toLocaleString()
+}
