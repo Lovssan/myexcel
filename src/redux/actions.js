@@ -1,6 +1,6 @@
 /* eslint-disable linebreak-style */
-import {CHANGE_TEXT,
-  CHANGE_STYLES, TABLE_RESIZE, APPLY_STYLE, TABLE_NAME} from './types'
+import {CHANGE_TEXT, CHANGE_STYLES, TABLE_RESIZE, APPLY_STYLE,
+  TABLE_NAME, UPDATE_DATE} from './types'
 
 export const tableResize = (payload) => ({
   type: TABLE_RESIZE,
@@ -26,4 +26,10 @@ export const changeTableName = (payload) => ({
   type: TABLE_NAME,
   payload
 })
+
+export const updateDate = (payload) => ({
+  type: UPDATE_DATE,
+  payload
+})
+
 

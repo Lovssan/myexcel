@@ -1,6 +1,6 @@
 /* eslint-disable linebreak-style */
 import {CHANGE_TEXT, CHANGE_STYLES, TABLE_RESIZE, APPLY_STYLE,
-  TABLE_NAME} from './types'
+  TABLE_NAME, UPDATE_DATE} from './types'
 
 
 export function rootReducer(state, action) {
@@ -39,6 +39,9 @@ export function rootReducer(state, action) {
     case TABLE_NAME: {
       return {...state, tableName: action.payload}
     }
+    case UPDATE_DATE: {
+      return {...state, date: action.payload}
+    }
     default: {
       return state
     }
@@ -46,7 +49,7 @@ export function rootReducer(state, action) {
 }
 
 function value(state, field, action) {
-  const val = state[field] || {}
+  const val = {...state[field]}
   val[action.payload.id] = action.payload.value
   return val
 }

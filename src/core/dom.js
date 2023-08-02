@@ -82,7 +82,6 @@ export class Dom {
   attr(name, value) {
     if (value !== undefined) {
       this.$el.setAttribute(name, value)
-      console.log(this.$el.dataset.value)
       return this
     }
     return this.$el.getAttribute(name)
