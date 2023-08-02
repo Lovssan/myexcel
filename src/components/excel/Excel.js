@@ -2,6 +2,7 @@
 import {Observer} from '../../core/Observer'
 import {StoreSubscribe} from '../../core/StoreSubscriber'
 import {$} from '../../core/dom'
+import {preventDefault} from '../../core/utils'
 import {updateDate} from '../../redux/actions'
 
 export class Excel {
@@ -28,6 +29,9 @@ export class Excel {
     return $root
   }
   init() {
+    if (process.env.NODE_ENV === 'production') {
+      document.addEventListener('contextmenu', preventDefault)
+    }
     const date = new Date()
     this.store.dispatch(updateDate(date.toLocaleString()))
     this.subscriber.subscribeComponents(this.components)
@@ -35,6 +39,7 @@ export class Excel {
   }
 
   destroy() {
+    document.removeEventListener('contextmenu', preventDefault)
     this.subscriber.unSubscribe()
     this.components.forEach((component) => component.destroy())
   }
